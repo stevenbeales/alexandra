@@ -1,0 +1,159 @@
+{
+  "intents": [
+    {
+      "name": "Add",
+      "samples": [
+        "Add {item_A} and {item_B} and {item_C} and {item_D} and {item_E} to my survey",
+      ],
+      "slots": [
+        {
+          "name": "item_A",
+          "type": "AMAZON.string",
+          "samples": [
+            "Add {item_A}"
+          ]
+        },
+        {
+          "name": "item_B",
+          "type": "AMAZON.string",
+          "samples": []
+        },
+        {
+          "name": "item_C",
+          "type": "AMAAMAZON.string",
+          "samples": []
+        },
+        {
+          "name": "item_D",
+          "type": "AMAZON.string",
+          "samples": []
+        },
+        {
+          "name": "item_E",
+          "type": "AMAZON.string",
+          "samples": []
+        }
+      ]
+    },
+    {
+      "name": "AllItems",
+      "samples": [
+        "What are all the items in my survey"
+      ],
+      "slots": []
+    },
+    {
+      "name": "AMAZON.CancelIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.HelpIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.StopIntent",
+      "samples": []
+    },
+    {
+      "name": "Clear",
+      "samples": [
+        "To remove all items in my survey",
+      ],
+      "slots": []
+    }
+  ],
+  "prompts": [
+    {
+      "id": "Confirm.Intent-Add",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "You want to add {item_A}, {item_B}, {item_C}, {item_D}, and {item_E}. Is this correct?"
+        }
+      ]
+    },
+    {
+      "id": "Confirm.Intent-Clear",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Are you sure you wish to remove all items from your survey, This cannot be undone"
+        }
+      ]
+    },
+    {
+      "id": "Confirm.Intent-Remove",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "You want to remove {item_A}, is this correct?"
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "version": "1.0",
+    "intents": [
+      {
+        "name": "Add",
+        "confirmationRequired": true,
+        "prompts": {
+          "confirm": "Confirm.Intent-Add"
+        },
+        "slots": [
+          {
+            "name": "item_A",
+            "type": "string",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-Add.IntentSlot-item_A"
+            }
+          },
+          {
+            "name": "item_B",
+            "type": "string",
+            "elicitationRequired": false,
+            "confirmationRequired": false,
+            "prompts": {}
+          },
+          {
+            "name": "item_C",
+            "type": "string",
+            "elicitationRequired": false,
+            "confirmationRequired": false,
+            "prompts": {}
+          },
+          {
+            "name": "item_D",
+            "type": "string",
+            "elicitationRequired": false,
+            "confirmationRequired": false,
+            "prompts": {}
+          },
+          {
+            "name": "item_E",
+            "type": "string",
+            "elicitationRequired": false,
+            "confirmationRequired": false,
+            "prompts": {}
+          }
+        ]
+      },
+      {
+        "name": "Clear",
+        "confirmationRequired": true,
+        "prompts": {
+          "confirm": "Confirm.Intent-Clear"
+        },
+        "slots": []
+      }
+    ]
+  }
+}
